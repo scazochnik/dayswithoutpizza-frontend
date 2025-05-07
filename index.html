@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Личный кабинет</title>
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+    const user_id = tg.initDataUnsafe?.user?.id || 0;
+
+    fetch("https://ТВОЙ_БЭКЕНД/render.com/get_user", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ user_id })
+    })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("score").innerText = `Очки: ${data.points}`;
+      });
+
+    function answerQuiz() {
+      fetch("https://ТВОЙ_БЭКЕНД/render.com/quiz", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ user_id })
+      })
+        .then(res => res.json())
+        .then(data => alert(data.message));
+    }
+
+    function inviteFriend() {
+      fetch("https://ТВОЙ_БЭКЕНД/render.com/invite", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ user_id })
+      })
+        .then(res => res.json())
+        .then(data => alert(data.message));
+    }
+  </script>
+</head>
+<body>
+  <h1>Личный кабинет</h1>
+  <p id="score">Загрузка...</p>
+  <button onclick="answerQuiz()">Ответить на вопрос</button>
+  <button onclick="inviteFriend()">Пригласить друга</button>
+</body>
+</html>
