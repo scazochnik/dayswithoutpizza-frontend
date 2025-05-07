@@ -7,7 +7,7 @@
     tg.expand();
     const user_id = tg.initDataUnsafe?.user?.id || 0;
 
-    fetch("https://ТВОЙ_БЭКЕНД/render.com/get_user", {
+    fetch("https://dayswithoutpizza-backend.onrender.com/get_user", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({ user_id })
@@ -18,7 +18,7 @@
       });
 
     function answerQuiz() {
-      fetch("https://ТВОЙ_БЭКЕНД/render.com/quiz", {
+      fetch("https://dayswithoutpizza-backend.onrender.com/quiz", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ user_id })
@@ -28,7 +28,7 @@
     }
 
     function inviteFriend() {
-      fetch("https://ТВОЙ_БЭКЕНД/render.com/invite", {
+      fetch("https://dayswithoutpizza-backend.onrender.com/invite", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ user_id })
